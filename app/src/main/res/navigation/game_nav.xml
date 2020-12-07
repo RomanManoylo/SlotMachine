@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/game_nav"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.manoilo.testgame.view.SplashScreenFragment"
+        android:label="SplashScreenFragment">
+        <action
+            android:id="@+id/action_splashScreenFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@+id/splashScreenFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.manoilo.testgame.view.MenuFragment"
+        android:label="MenuFragment">
+        <action
+            android:id="@+id/action_menuFragment_to_playFragment"
+            app:destination="@id/playFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playFragment"
+        android:name="com.manoilo.testgame.view.PlayFragment"
+        android:label="PlayFragment">
+        <action
+            android:id="@+id/action_playFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_playFragment_to_payTableFragment"
+            app:destination="@id/payTableFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/payTableFragment"
+        android:name="com.manoilo.testgame.view.PayTableFragment"
+        android:label="PayTableFragment">
+        <action
+            android:id="@+id/action_payTableFragment_to_playFragment"
+            app:destination="@id/playFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <ImageView
+        android:id="@+id/pipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pipe"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/firstWheel"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/item_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/secondWheel"
+        app:layout_constraintStart_toStartOf="@+id/pipe"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/secondWheel"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/item_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/pipe"
+        app:layout_constraintStart_toStartOf="@+id/pipe"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/thirdWheel"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/item_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/pipe"
+        app:layout_constraintStart_toEndOf="@+id/secondWheel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/betLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/txt_bet"
+        app:layout_constraintEnd_toEndOf="@+id/firstWheel"
+        app:layout_constraintStart_toStartOf="@+id/firstWheel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/betValue"
+        style="@style/MoneyStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/betLabel"
+        app:layout_constraintStart_toStartOf="@+id/betLabel"
+        app:layout_constraintTop_toBottomOf="@+id/betLabel" />
+
+    <ImageView
+        android:id="@+id/creditLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/txt_credit"
+        app:layout_constraintEnd_toEndOf="@+id/secondWheel"
+        app:layout_constraintStart_toStartOf="@+id/secondWheel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/creditValue"
+        style="@style/MoneyStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/creditLabel"
+        app:layout_constraintStart_toStartOf="@+id/creditLabel"
+        app:layout_constraintTop_toBottomOf="@+id/creditLabel" />
+
+    <ImageView
+        android:id="@+id/winLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/txt_win"
+        app:layout_constraintEnd_toEndOf="@+id/thirdWheel"
+        app:layout_constraintStart_toStartOf="@+id/thirdWheel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/winValue"
+        style="@style/MoneyStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/winLabel"
+        app:layout_constraintStart_toStartOf="@+id/winLabel"
+        app:layout_constraintTop_toBottomOf="@+id/winLabel" />
+
+    <ImageButton
+        android:id="@+id/payTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/selector_pay_table_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/betOne"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/betOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/selector_bet_one_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/betMax"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/payTable" />
+
+    <ImageButton
+        android:id="@+id/betMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/selector_bet_max_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spin"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/betOne" />
+
+    <ImageButton
+        android:id="@+id/spin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/selector_spin_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/betMax" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
