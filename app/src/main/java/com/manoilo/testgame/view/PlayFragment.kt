@@ -1,5 +1,6 @@
 package com.manoilo.testgame.view
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -37,6 +38,8 @@ class PlayFragment : Fragment(R.layout.play_fragment) {
         val winObserver = Observer<Int> { win ->
             winValue.text = win.formatAsCurrency()
             setButtonEnableState(true)
+            if (win != 0)
+                MediaPlayer.create(context, R.raw.win_sound).start()
             if (viewModel.credit.value!! < viewModel.betSize.value!!)
                 spin.isEnabled = false
         }
@@ -61,7 +64,7 @@ class PlayFragment : Fragment(R.layout.play_fragment) {
         viewModel.betSize.observe(viewLifecycleOwner, betObserver)
         viewModel.winSize.observe(viewLifecycleOwner, winObserver)
 
-        viewModel.fistWheel.observe(viewLifecycleOwner, fistWheelObserver)
+        viewModel.firstWheel.observe(viewLifecycleOwner, fistWheelObserver)
         viewModel.secondWheel.observe(viewLifecycleOwner, secondWheelObserver)
         viewModel.thirdWheel.observe(viewLifecycleOwner, thirdWheelObserver)
         viewModel.isSpinButtonEnable.observe(viewLifecycleOwner, isSpinButtonEnableObserver)

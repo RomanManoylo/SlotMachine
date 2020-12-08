@@ -80,7 +80,7 @@ class PlayViewModelTest {
     fun checkWheelsImageUpdates() {
         val viewModel = PlayViewModel(FruitProvider())
         viewModel.spin()
-        assertNotNull(viewModel.fistWheel.value)
+        assertNotNull(viewModel.firstWheel.value)
         assertNotNull(viewModel.secondWheel.value)
         assertNotNull(viewModel.thirdWheel.value)
     }

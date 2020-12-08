@@ -9,7 +9,9 @@ import com.manoilo.testgame.provider.IFruitProvider
 import com.manoilo.testgame.util.DEFAULT_BET_VALUE
 import com.manoilo.testgame.util.DEFAULT_CREDIT_VALUE
 import com.manoilo.testgame.util.MAX_BET_VALUE
+import com.manoilo.testgame.util.PERCENT_VICTORY_PROBABILITY
 import kotlinx.coroutines.*
+import kotlin.random.Random
 
 class PlayViewModel(private val fruitsProvider: IFruitProvider) : ViewModel() {
 
@@ -17,7 +19,7 @@ class PlayViewModel(private val fruitsProvider: IFruitProvider) : ViewModel() {
     val betSize by lazy { MutableLiveData<Int>() }
     val winSize by lazy { MutableLiveData<Int>() }
 
-    val fistWheel by lazy { MutableLiveData<Fruit>() }
+    val firstWheel by lazy { MutableLiveData<Fruit>() }
     val secondWheel by lazy { MutableLiveData<Fruit>() }
     val thirdWheel by lazy { MutableLiveData<Fruit>() }
 
@@ -59,7 +61,7 @@ class PlayViewModel(private val fruitsProvider: IFruitProvider) : ViewModel() {
         viewModelScope.launch {
             val deferredList = listOf(
                 async {
-                    spinWheel(this, fistWheel)
+                    spinWheel(this, firstWheel)
                 },
                 async {
                     spinWheel(this, secondWheel)
@@ -68,6 +70,7 @@ class PlayViewModel(private val fruitsProvider: IFruitProvider) : ViewModel() {
                     spinWheel(this, thirdWheel)
                 })
             deferredList.awaitAll()
+            checkVictoryProbability()
             updateWinPrize()
         }
     }
@@ -87,15 +90,38 @@ class PlayViewModel(private val fruitsProvider: IFruitProvider) : ViewModel() {
      */
 
     private fun updateWinPrize() {
-        if (fistWheel.value == secondWheel.value && secondWheel.value == thirdWheel.value) {
+        if (firstWheel.value == secondWheel.value && secondWheel.value == thirdWheel.value) {
             PayTable.values().forEach {
-                if (it.fruitsType == fistWheel.value) {
+                if (it.fruitsType == firstWheel.value) {
                     val winPrize = betSize.value?.times(it.multiplier)
                     winSize.value = winPrize
                     credit.value = credit.value!! + winPrize!!
                 }
             }
         } else winSize.value = 0
+    }
+
+    private fun checkVictoryProbability() {
+
+        if (Random.nextDouble(1.0) >= PERCENT_VICTORY_PROBABILITY) {
+            var firstRandomFruit: Fruit
+            var secondRandomFruit: Fruit
+            var thirdRandomFruit: Fruit
+            do {
+                firstRandomFruit = fruitsProvider.getRandomFruit()
+                secondRandomFruit = fruitsProvider.getRandomFruit()
+                thirdRandomFruit = fruitsProvider.getRandomFruit()
+            } while (firstRandomFruit != secondRandomFruit && secondRandomFruit != thirdRandomFruit)
+            updateWheelsImage(firstRandomFruit, secondRandomFruit, thirdRandomFruit)
+        } else fruitsProvider.getWinItem().let {
+            updateWheelsImage(it, it, it)
+        }
+    }
+
+    private fun updateWheelsImage(firstFruit: Fruit, secondFruit: Fruit, thirdFruit: Fruit) {
+        firstWheel.value = firstFruit
+        secondWheel.value = secondFruit
+        thirdWheel.value = thirdFruit
     }
 
 }

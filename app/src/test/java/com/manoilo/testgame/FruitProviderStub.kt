@@ -11,4 +11,7 @@ class FruitProviderStub(private val fruits: List<Fruit>) : IFruitProvider {
             counter = 0
         return fruits[counter]
     }
+
+    override fun getWinItem(): Fruit = getRandomFruit()
+
 }

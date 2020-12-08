@@ -4,4 +4,6 @@ import com.manoilo.testgame.model.Fruit
 
 interface IFruitProvider {
     fun getRandomFruit(): Fruit
+
+    fun getWinItem(): Fruit
 }
